@@ -1,4 +1,5 @@
 import barreto.fillipe.screenmatch.calculos.FiltroRecomendacao;
+import barreto.fillipe.screenmatch.modelos.Episodio;
 import barreto.fillipe.screenmatch.modelos.Filme;
 import barreto.fillipe.screenmatch.modelos.Serie;
 import barreto.fillipe.screenmatch.calculos.CalculadoraDeTempo;
@@ -38,5 +39,11 @@ public class Principal {
 
         FiltroRecomendacao filtro = new FiltroRecomendacao();
         filtro.filtra(filme1);
+
+        Episodio primeiroLost = new Episodio();
+        primeiroLost.setNumero(1);
+        primeiroLost.setSerie(lost);
+        primeiroLost.setTotalVisualizacoes(300);
+        filtro.filtra(primeiroLost);
     }
 }
