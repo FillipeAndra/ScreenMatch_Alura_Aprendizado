@@ -1,4 +1,4 @@
-package barreto.fillipe.screenmatch.modelos.calculos;
+package barreto.fillipe.screenmatch.calculos;
 import barreto.fillipe.screenmatch.modelos.Titulo;
 
 public class CalculadoraDeTempo {

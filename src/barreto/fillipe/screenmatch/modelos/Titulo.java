@@ -64,9 +64,8 @@ public class Titulo {
 
     }
 
-    public String mediaAvaliacao(){
+    public double mediaAvaliacao(){
         double media = somaAvaliacao / totalDeAvaliacoes;
-        String retornoMedia = String.format("%.2f", media);
-        return  retornoMedia;
+        return  media;
     }
 }

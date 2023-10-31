@@ -1,6 +1,7 @@
+import barreto.fillipe.screenmatch.calculos.FiltroRecomendacao;
 import barreto.fillipe.screenmatch.modelos.Filme;
 import barreto.fillipe.screenmatch.modelos.Serie;
-import barreto.fillipe.screenmatch.modelos.calculos.CalculadoraDeTempo;
+import barreto.fillipe.screenmatch.calculos.CalculadoraDeTempo;
 
 public class Principal {
     public static void main (String[] args){
@@ -11,9 +12,9 @@ public class Principal {
 
         filme1.exibeFichaTecnica();
         filme1.avalia(8.5);
-        filme1.avalia(6);
-        filme1.avalia(5.5);
-        System.out.printf(filme1.mediaAvaliacao());
+        filme1.avalia(7);
+        filme1.avalia(9.5);
+        System.out.println(filme1.mediaAvaliacao());
 
         Serie lost = new Serie();
         lost.setNome("Lost");
@@ -34,5 +35,8 @@ public class Principal {
         calculadora.inclui(filme2);
         calculadora.inclui(lost);
         System.out.println(calculadora.getTempoTotal());
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(filme1);
     }
 }
