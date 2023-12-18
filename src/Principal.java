@@ -4,7 +4,9 @@ import barreto.fillipe.screenmatch.modelos.Filme;
 import barreto.fillipe.screenmatch.modelos.Serie;
 import barreto.fillipe.screenmatch.calculos.CalculadoraDeTempo;
 
+
 import java.util.ArrayList;
+
 
 public class Principal {
     public static void main (String[] args){
@@ -48,6 +50,7 @@ public class Principal {
         primeiroLost.setTotalVisualizacoes(300);
         filtro.filtra(primeiroLost);
 
+
         Filme ExpressoPolar = new Filme();
         ExpressoPolar.setNome("Expresso Polar");
         ExpressoPolar.setDuracaoEmMinutos(100);
@@ -61,5 +64,6 @@ public class Principal {
         System.out.println("Tamanho da lista: "+ listaDeFilmes.size());
         System.out.println("Primeiro item da lista: "+ listaDeFilmes.get(0).getNome());
         System.out.println(listaDeFilmes);
+
     }
 }
