@@ -1,4 +1,10 @@
 package barreto.fillipe.screenmatch.principal;
+import barreto.fillipe.screenmatch.modelos.Titulo;
+
+import barreto.fillipe.screenmatch.modelos.TituloOMDb;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,7 +16,7 @@ import java.util.Scanner;
 public class PincipalComBusca {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner leitor = new Scanner(System.in);
-        System.out.println("Qual filme você quer perquisar?");
+        System.out.println("Qual filme você quer perquisar? ");
         var busca = leitor.nextLine(); //ele já infere que é String
         String endereco = "http://www.omdbapi.com/?t=" +busca+ "&apikey=8a99a6c7";
 
@@ -23,6 +29,16 @@ public class PincipalComBusca {
 
         HttpResponse<String> response = client // envia a requisição
                 .send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body()); // retorna o JSON da resposta
+
+        // será adicionado também uma biblioteca para transformar o arquivo JSON de retorno
+        // em uma classe java (a biblioteca utilizada é a GSON )
+        String json = response.body();
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .create();
+        TituloOMDb tituloOMDb = gson.fromJson(json,TituloOMDb.class);//transforma de JSON para record título
+        System.out.println(tituloOMDb);
+        Titulo titulo = new Titulo(tituloOMDb);
+        System.out.println(titulo);
     }
 }

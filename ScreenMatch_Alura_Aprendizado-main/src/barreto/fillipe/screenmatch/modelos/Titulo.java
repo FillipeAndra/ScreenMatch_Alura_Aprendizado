@@ -1,7 +1,16 @@
 package barreto.fillipe.screenmatch.modelos;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import java.util.Scanner;
+
 public class Titulo implements Comparable<Titulo>{
+    //@SerializedName("Title") // guia o que no arquivo json é correspondente na classe chamada
+    //que irá armazenar o dado
     private String nome = "não informado";
+    //@SerializedName("Year")
     private int anoDeLancamento = 0;
     private boolean incluidoNoPlano = false;
     private double somaAvaliacao = 0;
@@ -20,6 +29,25 @@ public class Titulo implements Comparable<Titulo>{
         this.anoDeLancamento = ano;
 
     }
+
+    public Titulo(TituloOMDb tituloOMDb) {
+        String[] anoOMDB = tituloOMDb.runtime().split(" ");
+        ArrayList<String> anoTransicao = new ArrayList<>();
+        int ano = 0;
+        for(String item : anoOMDB){
+            try{
+                ano = Integer.parseInt(item);
+
+            }catch(NumberFormatException e){
+
+            }
+        }
+
+        this.nome = tituloOMDb.title();
+        this.anoDeLancamento = tituloOMDb.year();
+        this.duracaoEmMinutos = ano;
+    }
+
     public String getNome(){
 
         return this.nome;
@@ -88,4 +116,9 @@ public class Titulo implements Comparable<Titulo>{
     //    }
     //    return 0;
     //}
+
+    @Override
+    public String toString(){
+        return "Titulo: "+this.nome+", duração: "+this.duracaoEmMinutos+" min"+"("+this.anoDeLancamento+")";
+    }
 }
