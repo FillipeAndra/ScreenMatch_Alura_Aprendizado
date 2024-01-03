@@ -14,12 +14,15 @@ public class PincipalComBusca {
         var busca = leitor.nextLine(); //ele já infere que é String
         String endereco = "http://www.omdbapi.com/?t=" +busca+ "&apikey=8a99a6c7";
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpClient client = HttpClient.newHttpClient(); //cria o cliente que fará a requisição
+        //do servidor da API
+
+        HttpRequest request = HttpRequest.newBuilder() //constroi a requisição
                 .uri(URI.create(endereco))
                 .build();
-        HttpResponse<String> response = client
+
+        HttpResponse<String> response = client // envia a requisição
                 .send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
+        System.out.println(response.body()); // retorna o JSON da resposta
     }
 }
