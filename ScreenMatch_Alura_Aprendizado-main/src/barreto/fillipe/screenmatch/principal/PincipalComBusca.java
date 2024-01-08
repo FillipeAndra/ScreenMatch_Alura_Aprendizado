@@ -18,6 +18,7 @@ public class PincipalComBusca {
         Scanner leitor = new Scanner(System.in);
         System.out.println("Qual filme você quer perquisar? ");
         var busca = leitor.nextLine(); //ele já infere que é String
+        try{
         String endereco = "http://www.omdbapi.com/?t=" +busca+ "&apikey=8a99a6c7";
 
         HttpClient client = HttpClient.newHttpClient(); //cria o cliente que fará a requisição
@@ -36,9 +37,18 @@ public class PincipalComBusca {
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .create();
+
         TituloOMDb tituloOMDb = gson.fromJson(json,TituloOMDb.class);//transforma de JSON para record título
         System.out.println(tituloOMDb);
-        Titulo titulo = new Titulo(tituloOMDb);
-        System.out.println(titulo);
+
+            Titulo titulo = new Titulo(tituloOMDb);
+            System.out.println(titulo);
+        }catch(NumberFormatException e){
+            System.out.println("Ocorreu um erro: ");
+            System.out.println(e.getMessage());
+        }catch(IllegalArgumentException e){
+            System.out.println("algo foi digitado errado");
+        }
+
     }
 }

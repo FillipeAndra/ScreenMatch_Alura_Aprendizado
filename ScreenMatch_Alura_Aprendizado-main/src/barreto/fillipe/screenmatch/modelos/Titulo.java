@@ -44,7 +44,7 @@ public class Titulo implements Comparable<Titulo>{
         }
 
         this.nome = tituloOMDb.title();
-        this.anoDeLancamento = tituloOMDb.year();
+        this.anoDeLancamento = Integer.parseInt(tituloOMDb.year());
         this.duracaoEmMinutos = ano;
     }
 
