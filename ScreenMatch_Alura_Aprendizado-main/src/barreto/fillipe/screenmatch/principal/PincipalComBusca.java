@@ -1,5 +1,8 @@
 package barreto.fillipe.screenmatch.principal;
 import barreto.fillipe.screenmatch.modelos.Titulo;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import barreto.fillipe.screenmatch.modelos.TituloOMDb;
 import com.google.gson.FieldNamingPolicy;
@@ -18,6 +21,13 @@ public class PincipalComBusca {
         Scanner leitor = new Scanner(System.in);
         System.out.println("Qual filme você quer perquisar? ");
         var busca = leitor.nextLine(); //ele já infere que é String
+        List<String> lista = new ArrayList<String>(Arrays.asList(busca.split("")));
+        for(int i =0; i < lista.size(); i++){
+            if ((lista.get(i)).equals(" ")){
+                lista.set(i,"");
+            }
+        }
+        busca = String.join("",lista);
         try{
         String endereco = "http://www.omdbapi.com/?t=" +busca+ "&apikey=8a99a6c7";
 
@@ -43,9 +53,6 @@ public class PincipalComBusca {
 
             Titulo titulo = new Titulo(tituloOMDb);
             System.out.println(titulo);
-        }catch(NumberFormatException e){
-            System.out.println("Ocorreu um erro: ");
-            System.out.println(e.getMessage());
         }catch(IllegalArgumentException e){
             System.out.println("algo foi digitado errado");
         }

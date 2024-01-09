@@ -22,30 +22,40 @@ public class Titulo implements Comparable<Titulo>{
     // só fazer um construtor que bata com o da classe mãe, chamando o super com o que tem no da mãe
     // ou fazer o último, adicionando novas entradas
     public Titulo(String nome, int ano){
-        if(nome.isEmpty()){
-            this.nome = "criado sem nome";
-        }
-        this.nome = nome ;
+        this.nome = nome;
         this.anoDeLancamento = ano;
 
     }
 
     public Titulo(TituloOMDb tituloOMDb) {
-        String[] anoOMDB = tituloOMDb.runtime().split(" ");
-        ArrayList<String> anoTransicao = new ArrayList<>();
-        int ano = 0;
-        for(String item : anoOMDB){
+        String[] duracaoOMDB = tituloOMDb.runtime().split(" ");
+        String[] anoOMDB = tituloOMDb.year().split("");
+        int teste;
+        int duracao = 0;
+        String ano = "";
+
+
+        for(String item : duracaoOMDB){
             try{
-                ano = Integer.parseInt(item);
+                duracao = Integer.parseInt(item);
 
             }catch(NumberFormatException e){
+                System.out.println("Erro na formatação do número da duração");
+            }
+        }
 
+        for(String item : anoOMDB){
+            try{
+                teste = Integer.parseInt(item);
+                ano = ano + item;
+            }catch(NumberFormatException e){
+                System.out.println("Erro na formatação do número do ano");
             }
         }
 
         this.nome = tituloOMDb.title();
-        this.anoDeLancamento = Integer.parseInt(tituloOMDb.year());
-        this.duracaoEmMinutos = ano;
+        this.anoDeLancamento = Integer.parseInt(ano);
+        this.duracaoEmMinutos = duracao;
     }
 
     public String getNome(){
