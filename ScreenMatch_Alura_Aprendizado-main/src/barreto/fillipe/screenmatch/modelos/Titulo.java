@@ -28,34 +28,38 @@ public class Titulo implements Comparable<Titulo>{
     }
 
     public Titulo(TituloOMDb tituloOMDb) {
-        String[] duracaoOMDB = tituloOMDb.runtime().split(" ");
-        String[] anoOMDB = tituloOMDb.year().split("");
-        int teste;
-        int duracao = 0;
-        String ano = "";
+        try {
+            String[] duracaoOMDB = tituloOMDb.runtime().split(" ");
+            String[] anoOMDB = tituloOMDb.year().split("");
+            int teste;
+            int duracao = 0;
+            String ano = "";
 
 
-        for(String item : duracaoOMDB){
-            try{
-                duracao = Integer.parseInt(item);
+            for (String item : duracaoOMDB) {
+                try {
+                    duracao = Integer.parseInt(item);
 
-            }catch(NumberFormatException e){
-                System.out.println("Erro na formatação do número da duração");
+                } catch (NumberFormatException e) {
+                    System.out.println("Erro na formatação do número da duração");
+                }
             }
-        }
 
-        for(String item : anoOMDB){
-            try{
-                teste = Integer.parseInt(item);
-                ano = ano + item;
-            }catch(NumberFormatException e){
-                System.out.println("Erro na formatação do número do ano");
+            for (String item : anoOMDB) {
+                try {
+                    teste = Integer.parseInt(item);
+                    ano = ano + item;
+                } catch (NumberFormatException e) {
+
+                }
             }
-        }
 
-        this.nome = tituloOMDb.title();
-        this.anoDeLancamento = Integer.parseInt(ano);
-        this.duracaoEmMinutos = duracao;
+            this.nome = tituloOMDb.title();
+            this.anoDeLancamento = Integer.parseInt(ano);
+            this.duracaoEmMinutos = duracao;
+        }catch(NullPointerException e){
+            System.out.println("Um dos valores não foi preenchido na base de dados");
+        }
     }
 
     public String getNome(){
@@ -129,6 +133,6 @@ public class Titulo implements Comparable<Titulo>{
 
     @Override
     public String toString(){
-        return "Titulo: "+this.nome+", duração: "+this.duracaoEmMinutos+" min"+"("+this.anoDeLancamento+")";
+        return "("+"Titulo: "+this.nome+", duração: "+this.duracaoEmMinutos+" min"+"("+this.anoDeLancamento+")"+")";
     }
 }

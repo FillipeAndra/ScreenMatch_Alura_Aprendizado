@@ -1,0 +1,26 @@
+[
+  {
+    "Nome": "Wind",
+    "AnoDeLancamento": 1992,
+    "IncluidoNoPlano": false,
+    "SomaAvaliacao": 0.0,
+    "TotalDeAvaliacoes": 0,
+    "DuracaoEmMinutos": 126
+  },
+  {
+    "Nome": "não informado",
+    "AnoDeLancamento": 0,
+    "IncluidoNoPlano": false,
+    "SomaAvaliacao": 0.0,
+    "TotalDeAvaliacoes": 0,
+    "DuracaoEmMinutos": 0
+  },
+  {
+    "Nome": "Gladiator",
+    "AnoDeLancamento": 2000,
+    "IncluidoNoPlano": false,
+    "SomaAvaliacao": 0.0,
+    "TotalDeAvaliacoes": 0,
+    "DuracaoEmMinutos": 155
+  }
+]
