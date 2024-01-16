@@ -73,7 +73,7 @@ public class PincipalComBusca {
 
         }
 
-        FileWriter arquivo = new FileWriter("filmes.json");
+        FileWriter arquivo = new FileWriter("filmes");
         arquivo.write(gson.toJson(titulos));
         arquivo.close();
         System.out.println(titulos);
